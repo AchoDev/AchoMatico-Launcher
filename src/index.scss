@@ -1,0 +1,432 @@
+
+
+
+
+
+
+$top-bar-color: #4d5166;
+$main-color: linear-gradient( 100deg, #424659, #272831);
+$darken-amount: 10;
+$dark-main-color: linear-gradient( 100deg, darken(#424659, $darken-amount), darken(#272831, $darken-amount));
+$text-color: white;
+$button-color: rgb(144, 150, 165);
+
+$bar-height: 40px;
+
+@mixin gradient($amount: 0, $deg: 100deg) {
+  background: linear-gradient($deg, darken(#424659, $amount), darken(#272831, $amount));
+}
+
+#parent-container {
+
+  color: $text-color;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100vh;
+
+  #top-bar-container {
+
+    $gap-size: 0.2;
+    $button-size: $bar-height - ($bar-height * $gap-size);
+
+
+    background: $top-bar-color;
+    height: $bar-height;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    border-radius: 5px;
+    // margin-right: 20px;
+    // margin-left: 20px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+
+    img {
+      height: 100%;
+      width: 200px;
+    }
+    	
+    #bar-btn-container {
+
+      display: flex;
+      flex-direction: row;
+      justify-content: right;
+      align-items: center;
+      
+      margin-top: 50px;
+      margin-bottom: 50px;
+
+      height: 100% !important;
+
+      #settings {
+
+        margin-right: 20px;
+        background: $button-color;
+        border: none;
+        height: $button-size * 0.8;
+        width: 70px;
+        border-radius: 5px;
+        color: white;
+
+        font-family: inherit;
+      }
+
+      #account {
+
+        width: $button-size;
+        height: $button-size;
+        border: none;
+        border-radius: 3px;
+        
+        background: $button-color;
+        box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
+
+        img {
+          width: 130%;
+          height: 130%;
+          transform: translate(-15%, -15%);
+        }
+  
+      }
+
+      #name {
+        padding-left: 20px;
+        padding-right: 20px;
+      }
+    }
+
+  }
+
+  #app-container {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: row;
+
+    $selector-width: 200px;
+
+    #selector-container {
+
+      width: $selector-width;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      flex-shrink: 0;
+
+      overflow-y: scroll;
+      height: 100vh;
+
+      input {
+        padding: 10px 0 10px 0;
+        border: none;
+        border-radius: 15px;
+
+        $margin-spacing: 5%;
+
+        width: 100% - $margin-spacing;
+        margin: 10px 0 10px 0;
+        font-family: inherit;
+      }
+
+      $button-background: rgb(113, 124, 143);
+
+      .app-selector-button {
+        padding: 10px 0 10px 0;
+        margin-bottom: 6px;
+        border: none;
+        border-radius: 10px;
+        width: 90%;
+
+        color: white;
+        cursor: pointer;
+
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        font-family: inherit;
+
+        background: $button-background;
+
+        transition: ease-in-out 0.1s;
+
+        img {
+          width: 40px;
+          height: 40px;
+        }
+
+        span {
+          width: 70%;
+          height: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+      }
+
+      .app-selector-button:hover {
+        background: lighten($button-background, 10);
+        transform: scale(1.03);
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+      }
+
+      .app-selector-button:active {
+        transition: none;
+        background: darken($button-background, 10);
+        transform: scale(0.97);
+      }  
+
+    }
+
+
+    #show-container {
+      flex-grow: 1;
+      @include gradient($amount: 6.5, $deg: 160deg);
+      overflow-y: scroll;
+      height: 100vh;
+
+      #top-head-image {
+        width: 100%;
+        height: 200px;
+        position: relative;
+
+        img {
+          widtH: 100%;
+          height: 100%;
+        }
+
+        #edit-button {
+          position: absolute;
+          top: 5px;
+          right: 5px;
+
+          width: 20px;
+          height: 20px;
+
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background: rgba($color: #18648d, $alpha: 0);
+
+          img {
+            width: 20px;
+            height: 20px;
+            filter: invert(1);
+            background: rgb(255, 255, 255);
+            border-radius: 5px;
+            border: 2px solid rgb(255, 255, 255);
+          }
+        }
+
+        #edit-button:hover {
+          transform: scale(1.05);
+        }
+
+        #edit-button:active {
+          transform: scale(0.95);
+        }
+
+        .save-button {
+          width: 40px !important;
+          background: black !important;
+          filter: invert(0) !important;
+          color: white;
+          border-radius: 5px;
+        }
+      }
+
+      #app-content-container {
+
+        $bar-item-distance: 40px;
+        $top-bar-height: 150px;
+
+        $button-color-main: rgb(11, 55, 105);
+        $button-lighten-amount: 10;        
+        $button-color-final: linear-gradient(150deg, $button-color-main, lighten($button-color-main, $button-lighten-amount));
+        $button-width: 200px;
+
+
+        $button-hover-lighten-amount: 20;
+
+        // height: 100%;
+        display: flex;
+        flex-direction: column;
+
+        
+        margin-bottom: 100px;
+
+        #top-bar {
+
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          align-items: center;
+
+          // gap: $bar-item-distance;
+
+          margin-top: 30px;
+          margin-bottom: 50px;
+
+          height: $top-bar-height;
+
+          #icon-title-container {
+
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            align-items: center;
+            gap: 10px;
+
+            height: 50px;
+
+            #icon-image {
+              height: 100%;
+              border-radius: 10px;
+              border: 2px solid rgb(25, 25, 31);
+              box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+            }
+
+            #title {
+              font-size: 2.5rem;
+            }
+          }
+
+          #lower-bar-flex-wrapper {
+
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+
+            #lower-bar-container {
+
+              height: 50px;
+              display: flex;
+              flex-direction: row;
+              gap: $bar-item-distance;
+  
+              button {
+                background: $button-color-final;
+                height: 100%;
+                width: $button-width;
+                border-radius: 10px;
+                color: white;
+    
+                font-family: inherit;
+                font-size: 2rem;
+                transition: ease-in-out 0.1s;
+                border: 1px solid rgb(62, 86, 114);
+              }
+    
+              $hover-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    
+              button:hover {
+                background: lighten($button-color-main, $button-hover-lighten-amount);
+    
+                cursor: pointer;
+    
+                transform: scale(1.1);
+                // transform: translateY(1px);
+                box-shadow: $hover-shadow;
+                
+              }
+    
+              button:active {
+                transition: none;
+                transform: scale(1.05);
+                box-shadow: $hover-shadow, rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+                
+                // background: rgb(70, 78, 117);
+              }
+    
+              
+    
+              #space-taken-container, #last-played-container {
+                display: flex;
+                flex-direction: column;
+                justify-content: right;
+    
+                gap: 0px;
+    
+                align-items: center;
+    
+                span {
+                  text-align: center;
+                }
+    
+              }
+  
+            }
+        
+          }
+
+
+        }
+
+        #desc-container {
+
+          flex-grow: 1;
+          display: flex;
+          justify-content: center;
+          // margin-bottom: 100px;
+
+          #desc-p {
+
+            padding: 20px;
+
+            height: 100%;
+            width: 80%;
+            border: 3px solid rgb(90, 93, 109);
+            border-radius: 10px;
+          }
+        }
+
+      }
+    }
+
+  }
+
+  // #show-container {
+
+  // }
+
+}
+
+::-webkit-scrollbar {
+  width: 7px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: rgba(0, 0, 0, 0.404);
+  border-radius: 10px;
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgb(92, 92, 92); 
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(129, 129, 129); 
+}
+
+
+body {
+  // font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica,
+  //   Arial, sans-serif;
+
+  font-family: 'Cabin', sans-serif !important;
+  margin: 0;
+
+  background: $main-color;
+  overflow-y: hidden;
+}
+
+.hidden {
+  display: none !important;
+}
