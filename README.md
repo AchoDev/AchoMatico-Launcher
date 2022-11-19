@@ -9,4 +9,4 @@ Every app inside the launcher has it's own description, Icon and head-image.
 
 ### How to install
 
-just dont
+Work in progress
