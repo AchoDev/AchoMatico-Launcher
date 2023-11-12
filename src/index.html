@@ -10,6 +10,8 @@
     <script src="./page-loader.js" defer></script>
     <script src="./edit-mode.js" defer></script>
 
+    <script src="./compiled/src/fileReader.js"></script>
+
 
     <!-- FONTS -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -22,7 +24,79 @@
   
   </head>
   <body>
-    <div id="parent-container">
+
+    <script type="module">
+
+      import { createApp, reactive } from "https://unpkg.com/petite-vue?module"
+      const dialog = require('node-file-dialog')
+
+      let apps = []
+
+      function readFile() {
+        const data = readMemory()
+        apps = JSON.parse(data).apps
+        console.log(apps)
+      }
+      readFile()
+
+
+      let currentApp = reactive({
+        name: "good title",
+        description: "select something",
+        lastPlayed: "yesterday",
+        iconimage: "",
+        headimage: "",
+        path: "",
+      })
+
+      function setCurrentApp(data) {
+        currentApp.name = data.name
+        currentApp.description = data.description
+        currentApp.headimage = data.headimage
+        currentApp.iconimage = data.iconimage
+        currentApp.lastplayed = data.lastplayed
+
+        currentApp.path = data.path
+      }
+
+      let counter = 0;
+
+      async function addApp() {
+        const config = {type:'open-file'}
+        const path = dialog(config)[0]
+
+
+
+        apps.push({
+          name: path,
+          description: "",
+          lastPlayed: Date.UTC,
+          iconimage: path,
+          headimage: '../images/head.png',
+          path: path,
+        })
+
+        fs.writeFileSync('./src/memory/apps.json', JSON.stringify({apps: apps}, null, 4))
+
+        readFile()
+       
+      }
+
+      createApp({
+        addApp,
+        setCurrentApp,
+        currentApp,
+        get apps() {
+          return apps
+        },
+
+        counter,
+
+        editMode: false,
+      }).mount()
+    </script>
+
+    <div v-scope id="parent-container">
       
       <div id="top-bar-container">
 
@@ -40,6 +114,7 @@
           <span id="name">
             mensch
           </span>
+
         </div>
 
       </div>
@@ -47,36 +122,32 @@
       <div id="app-container">
 
         <div id="selector-container">
-          
+
           <input type="text" placeholder="  Search...">
 
-          <template id="selector-button-template">
-            <button class="app-selector-button" id="game1">
-              <img src="../images/icon.jpg" alt="img" />
-              <span>ERROR</span>
-            </button>
-          </template>
+          <button @click="readFile()">reload</button>
 
-
-          <!-- <button class="app-selector-button" id="game2">
-            <img src="../images/icon.jpg" alt="img" />
-            <span>Minecraft+</span>
+          <button v-for="app in apps" @click="setCurrentApp(app)" class="app-selector-button" id="game1">
+            <img :src="app.iconimage" alt="img" />
+            <span> {{ app.name }} </span>
           </button>
-          <button class="app-selector-button" id="game3">
-            <img src="../images/icon.jpg" alt="img" />
-            <span>Spiderman evren67 edition</span>
-          </button> -->
+
+          <button class="app-selector-button" @click="addApp()">
+            +
+          </button>
 
         </div>
 
         <div id="show-container">
           <div id="top-head-image">
-            <img src="../images/head.png" alt="head" id="head-image">
-            <button id="edit-button" class="view-mode" onclick="toggleEditMode()"> <!-- EDIT MODE BUTTON -->
+
+            <img :src="currentApp.headimage" alt="head" id="head-image">
+
+            <button v-show="!editMode" id="edit-button" @click="editMode = true"> <!-- EDIT MODE BUTTON -->
               <img src="../images/edit.png" alt="Edit">
             </button>
 
-            <button id="edit-button" class="edit-mode save-button" onclick="toggleViewMode()">Save</button>
+            <button v-show="editMode" id="edit-button" @click="editMode = false">Save</button>
           </div>
 
           <div id="app-content-container">
@@ -84,30 +155,23 @@
             <div id="top-bar">
               
               <div id="icon-title-container">
-                <img src="" alt="icon" id="icon-image">
-                <span id="title" class="view-mode">achomatico launcher</span>
+                <img :src="currentApp.iconimage" alt="icon" id="icon-image">
+                <span id="title"> {{ currentApp.name }} </span>
 
-                <input id="title-edit" class="edit-mode" type="text" placeholder="New Name....."> <!-- TITLE EDIT -->
+                <input v-show="editMode" id="title-edit" type="text" placeholder="New Name....."> <!-- TITLE EDIT -->
               </div>
               
               <div id="lower-bar-flex-wrapper">
                 <div id="lower-bar-container">
   
-                  <button>ACM</button>
-    
-                  <div id="space-taken-container">
-                    <span>
-                      Space taken
-                    </span>
-                    <span id="space-taken-span">
-                    </span>
-                  </div>
+                  <button @click="startApp()"> Start </button>
     
                   <div id="last-played-container">
                     <span>
                       Last played
                     </span>
                     <span id="last-played-span">
+                      {{ currentApp.lastplayed }}
                     </span>
                   </div>
   
@@ -119,10 +183,10 @@
           
             <div id="desc-container">
               <p id="desc-p" class="view-mode">
-                select something
+                {{ currentApp.description }}
               </p>
 
-              <textarea name="desc-e" id="desc-edit" cols="60" rows="10" class="edit-mode"></textarea> <!-- TEXT AREA EDIT -->
+              <textarea v-show="editMode" name="desc-e" id="desc-edit" cols="60" rows="10"></textarea> <!-- TEXT AREA EDIT -->
             </div>
 
           </div> <!-- app content container -->

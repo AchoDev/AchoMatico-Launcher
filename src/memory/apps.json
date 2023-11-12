@@ -1,56 +1,66 @@
 {
-    "game1": {
-        "lastplayed": "11.09.2001",
-        "path": "explorer",
-        "name": "Clash Royale 3",
-        "headimage": "memory/headimages/game1.jpg",
-        "iconimage": "memory/icons/game1.jpg",
-        "spacetaken": "100gb",
-        "description": ""
-    },
-    "game2": {
-        "lastplayed": "Yesterday",
-        "path": "explorer",
-        "name": "Minecraft+",
-        "headimage": "memory/headimages/game2.jpg",
-        "iconimage": "memory/icons/game2.jpg",
-        "spacetaken": "99gb",
-        "description": "Fans des absoluten Gaming-Klassikers Minecraft warten schon lange auf eine Fortsetzung. Wie es um Minecraft 2 steht, verraten wir euch hier bei GIGA. MinecraftFACTS MinecraftSpielereihe:MinecraftVersion:1.9.4Sprachen:Deutsch, Englisch, Französisch, JapanischRelease:17.05.2009Lizenz:DemoPlattformen:Windows XP, Windows Vista, Windows 7, Windows 8, Playstation 3, Xbox 360, Nintendo Wii U, Xbox One, Android, iOS, Windows Phone, Playstation Vita, PlayStation 4, Windows 10Hersteller:MojangGenres:Action-Adventure-Spiele, RollenspieleMehr zu Minecraft:News, Tipps, Specials, GalerienWas sagen die Entwickler von Minecraft zu einer Fortsetzung?Mojang Studios ist das erfolgreiche Unternehmen hinter Minecraft, in dessen Händen auch das Schicksal von Minecraft 2 liegt. Da ist es nicht weiter verwunderlich, dass Jonas Martensson, CEO des Entwicklerstudios, oft gefragt wird, ob es eine Fortsetzung für das Spiel geben wird. Ein Interview mit IGN sorgte 2015 endlich für Klarheit, die aber leider enttäuschend ausfiel. Martensson erklärte nämlich, dass eine Fortsetzung aktuell nicht geplant sei. Ganz wollte er die Hoffnung der Fans aber nicht zerstören, denn er fügte auch hinzu, dass „er nicht versprechen könne, dass es Minecraft 2 nie geben wird“."
-    },
-    "game3": {
-        "lastplayed": "african time zone",
-        "path": "explorer",
-        "name": "among us 3",
-        "headimage": "memory/headimages/game3.jpg",
-        "iconimage": "memory/icons/game3.jpg",
-        "spacetaken": "1 byte",
-        "description": ""
-    },
-    "game4": {
-        "lastplayed": "HEHEHEHHEAW",
-        "path": "C:/Users/ahmed/Desktop/clean/AAAAAAAAA.lnk",
-        "name": "geometry dash",
-        "headimage": "memory/headimages/game4.jpg",
-        "iconimage": "memory/icons/game4.jpg",
-        "spacetaken": "1000 kubas",
-        "description": "gd is so fun man !!"
-    },
-    "game6": {
-        "lastplayed": "HEHEHEHHEAW",
-        "path": "C:/Users/ahmed/Desktop/clean/AAAAAAAAA.lnk",
-        "name": "Geometry Dash 2.2 100%",
-        "headimage": "memory/headimages/game4.jpg",
-        "iconimage": "memory/icons/game4.jpg",
-        "spacetaken": "999 kubas",
-        "description": "2.2 soon"
-    },
-    "game7": {
-        "lastplayed": "african time zone",
-        "path": "explorer",
-        "name": "Spiderman evren67 edition",
-        "headimage": "memory/headimages/game3.jpg",
-        "iconimage": "memory/icons/game3.jpg",
-        "spacetaken": "1 byte",
-        "description": ""
-    }
+    "apps": [
+        {
+            "lastplayed": "11.09.2001",
+            "path": "explorer",
+            "name": "Clash Royale 3",
+            "headimage": "memory/headimages/game1.jpg",
+            "iconimage": "memory/icons/game1.jpg",
+            "spacetaken": "100gb",
+            "description": ""
+        },
+        {
+            "lastplayed": "Yesterday",
+            "path": "explorer",
+            "name": "Minecraft+",
+            "headimage": "memory/headimages/game2.jpg",
+            "iconimage": "memory/icons/game2.jpg",
+            "spacetaken": "99gb",
+            "description": "Fans des absoluten Gaming-Klassikers Minecraft warten schon lange auf eine Fortsetzung. Wie es um Minecraft 2 steht, verraten wir euch hier bei GIGA. MinecraftFACTS MinecraftSpielereihe:MinecraftVersion:1.9.4Sprachen:Deutsch, Englisch, Französisch, JapanischRelease:17.05.2009Lizenz:DemoPlattformen:Windows XP, Windows Vista, Windows 7, Windows 8, Playstation 3, Xbox 360, Nintendo Wii U, Xbox One, Android, iOS, Windows Phone, Playstation Vita, PlayStation 4, Windows 10Hersteller:MojangGenres:Action-Adventure-Spiele, RollenspieleMehr zu Minecraft:News, Tipps, Specials, GalerienWas sagen die Entwickler von Minecraft zu einer Fortsetzung?Mojang Studios ist das erfolgreiche Unternehmen hinter Minecraft, in dessen Händen auch das Schicksal von Minecraft 2 liegt. Da ist es nicht weiter verwunderlich, dass Jonas Martensson, CEO des Entwicklerstudios, oft gefragt wird, ob es eine Fortsetzung für das Spiel geben wird. Ein Interview mit IGN sorgte 2015 endlich für Klarheit, die aber leider enttäuschend ausfiel. Martensson erklärte nämlich, dass eine Fortsetzung aktuell nicht geplant sei. Ganz wollte er die Hoffnung der Fans aber nicht zerstören, denn er fügte auch hinzu, dass „er nicht versprechen könne, dass es Minecraft 2 nie geben wird“."
+        },
+        {
+            "lastplayed": "african time zone",
+            "path": "explorer",
+            "name": "among us 3",
+            "headimage": "memory/headimages/game3.jpg",
+            "iconimage": "memory/icons/game3.jpg",
+            "spacetaken": "1 byte",
+            "description": ""
+        },
+        {
+            "lastplayed": "HEHEHEHHEAW",
+            "path": "C:/Users/ahmed/Desktop/clean/AAAAAAAAA.lnk",
+            "name": "geometry dash",
+            "headimage": "memory/headimages/game4.jpg",
+            "iconimage": "memory/icons/game4.jpg",
+            "spacetaken": "1000 kubas",
+            "description": "gd is so fun man !!"
+        },
+        {
+            "lastplayed": "HEHEHEHHEAW",
+            "path": "C:/Users/ahmed/Desktop/clean/AAAAAAAAA.lnk",
+            "name": "Geometry Dash 2.2 100%",
+            "headimage": "memory/headimages/game4.jpg",
+            "iconimage": "memory/icons/game4.jpg",
+            "spacetaken": "999 kubas",
+            "description": "2.2 soon"
+        },
+        {
+            "lastplayed": "african time zone",
+            "path": "explorer",
+            "name": "Spiderman evren67 edition",
+            "headimage": "memory/headimages/game3.jpg",
+            "iconimage": "memory/icons/game3.jpg",
+            "spacetaken": "1 byte",
+            "description": ""
+        },
+        {
+            "description": "",
+            "headimage": "../images/head.png"
+        },
+        {
+            "description": "",
+            "headimage": "../images/head.png"
+        }
+    ]
 }

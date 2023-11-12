@@ -1,22 +1,22 @@
-var fs = require("fs");
-var run = require("./run.js");
-var exec = require('child_process').execFile;
-var playbutton;
-var spaceTaken = document.getElementById("space-taken-span");
-var lastPlayed = document.getElementById("last-played-span");
-var description = document.getElementById("desc-p");
-var headimage = document.getElementById("head-image");
-var iconimage = document.getElementById("icon-image");
-var titleElement = document.getElementById("title");
-var buttonTemplate = document.getElementById("selector-button-template");
-var singleteonConfirm = false;
-var currendID;
-var path = 'src/memory/apps.json';
+const fs = require("fs");
+const run = require("./run.js");
+const exec = require('child_process').execFile;
+let playbutton;
+const spaceTaken = document.getElementById("space-taken-span");
+const lastPlayed = document.getElementById("last-played-span");
+const description = document.getElementById("desc-p");
+const headimage = document.getElementById("head-image");
+const iconimage = document.getElementById("icon-image");
+const titleElement = document.getElementById("title");
+const buttonTemplate = document.getElementById("selector-button-template");
+let singleteonConfirm = false;
+let currendID;
+let path = 'src/memory/apps.json';
 if (!fs.existsSync(path)) {
-    path = "resources/app/".concat(path);
+    path = `resources/app/${path}`;
 }
-var rawData = function () {
-    return fs.readFileSync(path, 'utf-8', function (err, data) {
+const rawData = () => {
+    return fs.readFileSync(path, 'utf-8', (err, data) => {
         if (err) {
             alert("an error occured\n\n" + err);
             return null;
@@ -24,15 +24,15 @@ var rawData = function () {
         return data;
     });
 };
-module.exports = { rawData: rawData, currendID: currendID };
-var appMemory = JSON.parse(rawData());
+module.exports = { rawData, currendID };
+const appMemory = JSON.parse(rawData());
 // @ts-ignore
-var btn = buttonTemplate.content.querySelector(".app-selector-button");
+const btn = buttonTemplate.content.querySelector(".app-selector-button");
 function createDOMButtons() {
     if (!module.parent) {
         singleteonConfirm = true;
-        for (var element in appMemory) {
-            var copy = btn.cloneNode(true);
+        for (const element in appMemory) {
+            const copy = btn.cloneNode(true);
             // console.log(appMemory[element])
             // console.log(copy + " dsfsfsdfa")
             copy.querySelector("img").src = appMemory[element].headImage;
@@ -45,13 +45,13 @@ function createDOMButtons() {
     }
 }
 createDOMButtons();
-var buttons = Array.from(document.getElementsByClassName("app-selector-button"));
-var i;
-buttons.forEach(function (button) {
-    var curr = button.id;
+const buttons = Array.from(document.getElementsByClassName("app-selector-button"));
+let i;
+buttons.forEach((button) => {
+    const curr = button.id;
     button.querySelector("img").src = appMemory[curr].iconimage;
     console.log(":) " + appMemory[curr].path);
-    button.addEventListener("click", function () {
+    button.addEventListener("click", () => {
         loadNewPage(appMemory[curr].path, appMemory[curr].spacetaken, appMemory[curr].lastplayed, appMemory[curr].description, appMemory[curr].headimage, appMemory[curr].iconimage, appMemory[curr].name);
         currendID = curr;
         console.log(curr);
@@ -67,12 +67,13 @@ function loadNewPage(url, space, date, desc, headimgurl, iconimgurl, title) {
     iconimage.src = iconimgurl;
     titleElement.innerText = title;
     playbutton.innerText = "Start";
-    var plClone = playbutton.cloneNode(true);
+    const plClone = playbutton.cloneNode(true);
     if (playbutton.parentNode != null) {
         playbutton.parentNode.replaceChild(plClone, playbutton);
     }
-    var handleClick = function () {
+    const handleClick = () => {
         run.runExe(url);
     };
     plClone.addEventListener("click", handleClick);
 }
+//# sourceMappingURL=page-loader.js.map
