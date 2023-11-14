@@ -29,19 +29,39 @@
 
       import { createApp, reactive } from "https://unpkg.com/petite-vue?module"
       const dialog = require('node-file-dialog')
+      const fileIcon = require('extract-file-icon')
+      const execFile = require('child_process').exec;
 
-      let apps = []
+      let apps = reactive({
+        apps: []
+      })
 
-      function readFile() {
+      async function readFile() {
+
+        
         const data = readMemory()
-        apps = JSON.parse(data).apps
-        console.log(apps)
+        apps.apps = JSON.parse(data).apps
+        console.log(apps)        
+        
+        apps.apps.forEach(app => {          
+          try {
+            const buffer = fileIcon(app.path)
+            const blob = new Blob([buffer.buffer], {type: 'image/png'})
+            app.iconimage = URL.createObjectURL(blob)
+            console.log(buffer)
+            
+          } catch(e) {
+            console.log(e)
+          }
+        })
+        
       }
+
       readFile()
 
 
       let currentApp = reactive({
-        name: "good title",
+        name: "",
         description: "select something",
         lastPlayed: "yesterday",
         iconimage: "",
@@ -49,7 +69,12 @@
         path: "",
       })
 
-      function setCurrentApp(data) {
+      let currentAppIndex = -1;
+
+      function setCurrentApp(data, index) {
+
+        currentAppIndex = index
+
         currentApp.name = data.name
         currentApp.description = data.description
         currentApp.headimage = data.headimage
@@ -61,36 +86,56 @@
 
       let counter = 0;
 
+      
+
+      function runExe(path) {
+          var child = execFile(`start "" "${path}"`, function (error, stdout, stderr) {
+              if (error) {
+                  throw error;
+                  console.log("hehehehehaw")
+              }
+              console.log(stdout);
+          });
+      }
+
       async function addApp() {
         const config = {type:'open-file'}
-        const path = dialog(config)[0]
+        const path = dialog(config)
+          .then((dir) => {
+            apps.apps.push({
+              name: dir[0].split('/').at(-1).split('.')[0],
+              description: "",
+              lastplayed: new Date().toLocaleDateString('en-GB'),
+              iconimage: dir[0],
+              headimage: '../images/head.png',
+              path: dir[0],
+            })
 
+            fs.writeFileSync('./src/memory/apps.json', JSON.stringify(apps, null, 4))
+            
+            readFile()
+          })
+        }
+        
+        function startApp(path) {
 
+        currentApp.lastplayed = new Date().toLocaleDateString('en-GB')
+        apps.apps[currentAppIndex].lastplayed = currentApp.lastplayed
+        fs.writeFileSync('./src/memory/apps.json', JSON.stringify(apps, null, 4))
 
-        apps.push({
-          name: path,
-          description: "",
-          lastPlayed: Date.UTC,
-          iconimage: path,
-          headimage: '../images/head.png',
-          path: path,
-        })
-
-        fs.writeFileSync('./src/memory/apps.json', JSON.stringify({apps: apps}, null, 4))
-
-        readFile()
-       
+        runExe(currentApp.path)
       }
 
       createApp({
         addApp,
         setCurrentApp,
         currentApp,
-        get apps() {
-          return apps
-        },
-
+        apps,
         counter,
+        
+        startApp,
+
+        currentAppIndex,
 
         editMode: false,
       }).mount()
@@ -125,21 +170,65 @@
 
           <input type="text" placeholder="  Search...">
 
-          <button @click="readFile()">reload</button>
-
-          <button v-for="app in apps" @click="setCurrentApp(app)" class="app-selector-button" id="game1">
+          <button v-for="(app, index) in apps.apps" @click="setCurrentApp(app, index)" class="app-selector-button" id="game1">
             <img :src="app.iconimage" alt="img" />
             <span> {{ app.name }} </span>
           </button>
 
-          <button class="app-selector-button" @click="addApp()">
-            +
+          <button id="addButton" class="app-selector-button" @click="addApp()">
+            <img src="../images/plus.png"></img>
           </button>
+
+          <style>
+            #addButton {
+              height: 40px;
+              align-items: center;
+              vertical-align: baseline;
+
+              background: linear-gradient(20deg, rgb(130, 169, 226), rgb(180, 206, 245)) !important;
+
+              transition: cubic-bezier(0.165, 0.84, 0.44, 1) .2s !important;
+            }
+
+            #addButton:hover {
+              transform: scale(1.1) rotate(5deg) !important;
+            }
+
+            #addButton:active {
+              box-shadow: rgb(204, 219, 232) 3px 3px 6px 0px inset, rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset !important;
+              transform: scale(1) rotate(2deg) !important;
+            }
+
+            #addButton:hover img {
+              transform: scale(1.4) rotate(280deg);
+            }
+
+            #addButton img {
+              height: 20px !important;
+              width: 20px !important;
+              filter: invert(100%);
+              transition: cubic-bezier(0.68, -0.55, 0.265, 1.55) .95s;
+            }
+          </style>
 
         </div>
 
         <div id="show-container">
-          <div id="top-head-image">
+
+          <center  v-show="currentApp.name === ''">
+            <span>Select an app on the left or press the Add button to add something</span>
+          </center>
+
+          <style>
+            center {
+              height: 100%;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+            }
+          </style>
+
+          <div id="top-head-image" v-show="currentApp.name !== ''">
 
             <img :src="currentApp.headimage" alt="head" id="head-image">
 
@@ -150,7 +239,7 @@
             <button v-show="editMode" id="edit-button" @click="editMode = false">Save</button>
           </div>
 
-          <div id="app-content-container">
+          <div id="app-content-container"  v-show="currentApp.name !== ''">
             
             <div id="top-bar">
               
@@ -168,7 +257,7 @@
     
                   <div id="last-played-container">
                     <span>
-                      Last played
+                      Last started
                     </span>
                     <span id="last-played-span">
                       {{ currentApp.lastplayed }}
