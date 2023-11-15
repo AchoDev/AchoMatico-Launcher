@@ -23,7 +23,7 @@ $bar-height: 40px;
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: 100vh;
+  height: 100dvh;
 
   #top-bar-container {
 
@@ -46,7 +46,9 @@ $bar-height: 40px;
 
     img {
       height: 100%;
-      width: 200px;
+      width: auto;
+
+      margin-left: 10px;
     }
     	
     #bar-btn-container {
@@ -72,6 +74,15 @@ $bar-height: 40px;
         color: white;
 
         font-family: inherit;
+
+        cursor: pointer;
+
+        transition: cubic-bezier(0.175, 0.885, 0.32, 1.275) .2s;
+
+        &:hover {
+          transform: scale(1.05);
+          background: lighten($button-color, 10%)
+        }
       }
 
       #account {
@@ -119,16 +130,31 @@ $bar-height: 40px;
       overflow-y: scroll;
       height: 100vh;
 
+      div {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+      }
+
       input {
         padding: 10px 0 10px 0;
         border: none;
         border-radius: 15px;
 
-        $margin-spacing: 5%;
+        $margin-spacing: 15%;
 
         width: 100% - $margin-spacing;
         margin: 10px 0 10px 0;
         font-family: inherit;
+
+        padding-left: 20px;
+
+        &:active, &:focus {
+          outline: 1px;
+          outline-color: rgba(0, 0, 0, 0.595);
+          outline-style: solid;
+        }
       }
 
       $button-background: rgb(113, 124, 143);

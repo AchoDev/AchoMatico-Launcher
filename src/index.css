@@ -15,8 +15,7 @@
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; }
     #parent-container #top-bar-container img {
       height: 100%;
-      width: auto;
-      margin-left: 10px; }
+      width: 200px; }
     #parent-container #top-bar-container #bar-btn-container {
       display: flex;
       flex-direction: row;
@@ -30,15 +29,14 @@
         background: #9096a5;
         border: none;
         height: 25.6px;
-        width: 70px;
+        width: 170px;
         border-radius: 5px;
         color: white;
         font-family: inherit;
-        cursor: pointer;
-        transition: cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.2s; }
+        cursor: pointer; }
         #parent-container #top-bar-container #bar-btn-container #settings:hover {
-          transform: scale(1.05);
-          background: #acb1bc; }
+          transform: scale(1.01);
+          background: #e4e6ea; }
       #parent-container #top-bar-container #bar-btn-container #account {
         width: 32px;
         height: 32px;
@@ -65,23 +63,13 @@
       flex-shrink: 0;
       overflow-y: scroll;
       height: 100vh; }
-      #parent-container #app-container #selector-container div {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        width: 100%; }
       #parent-container #app-container #selector-container input {
         padding: 10px 0 10px 0;
         border: none;
         border-radius: 15px;
-        width: 85%;
+        width: 95%;
         margin: 10px 0 10px 0;
-        font-family: inherit;
-        padding-left: 20px; }
-        #parent-container #app-container #selector-container input:active, #parent-container #app-container #selector-container input:focus {
-          outline: 1px;
-          outline-color: rgba(0, 0, 0, 0.595);
-          outline-style: solid; }
+        font-family: inherit; }
       #parent-container #app-container #selector-container .app-selector-button {
         padding: 10px 0 10px 0;
         margin-bottom: 6px;
