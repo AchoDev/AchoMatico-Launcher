@@ -17,18 +17,25 @@
   "license": "MIT",
   "config": {
     "forge": {
-      "packagerConfig": {},
+      "packagerConfig": {
+        "icon": "icon.ico",
+        "name": "AchoMatico-Launcher"
+      },
+
       "makers": [
         {
           "name": "@electron-forge/maker-squirrel",
           "config": {
-            "name": "achomatico_launcher"
+            "name": "AchoMatico-Launcherrrr",
+            "icon": "icon.ico"
           }
         },
         {
           "name": "@electron-forge/maker-zip",
+          "icon": "icon.ico",
           "platforms": [
-            "darwin"
+            "darwin",
+            "win32"
           ]
         },
         {
@@ -65,7 +72,8 @@
   "build": {
     "win": {
       "target": "portable",
-      "icon": "./icon.ico"
+      "icon": "./icon.ico",
+      "name": "AchoMatico-Launcher"
     }
   }
 }

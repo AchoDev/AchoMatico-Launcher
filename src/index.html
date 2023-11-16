@@ -139,7 +139,12 @@
               path: dir[0],
             })
 
-            fs.writeFileSync('./src/memory/apps.json', JSON.stringify(apps, null, 4))
+            try {
+              fs.writeFileSync('./src/memory/apps.json', JSON.stringify(apps, null, 4))
+            } catch {
+              fs.writeFileSync('./resources/app/src/memory/apps.json', JSON.stringify(apps, null, 4))
+            }
+
             
             readFile()
           })
@@ -152,8 +157,9 @@
 
         currentApp.lastplayed = new Date().toLocaleDateString('en-GB')
         apps.apps[currentAppIndex].lastplayed = currentApp.lastplayed
-        fs.writeFileSync('./src/memory/apps.json', JSON.stringify(apps, null, 4))
 
+        writeToFile(JSON.stringify(apps, null, 4))
+        
         runExe(currentApp.path)
       }
 
@@ -163,20 +169,28 @@
 
         apps.apps[currentAppIndex].name = currentApp.name
         apps.apps[currentAppIndex].description = currentApp.description
-        fs.writeFileSync('./src/memory/apps.json', JSON.stringify(apps, null, 4))
+
+        writeToFile(JSON.stringify(apps, null, 4))
       }
 
       let settingsMenuOpen = false;
 
+      function writeToFile(data) {
+        try {
+          fs.writeFileSync('./src/memory/apps.json', data)
+        } catch {
+          fs.writeFileSync('./resources/app/src/memory/apps.json', data)
+        }
+      }
 
       function deleteCurrentItem() {
         apps.apps.splice(currentAppIndex, 1)
-        fs.writeFileSync('./src/memory/apps.json', JSON.stringify(apps, null, 4))
+        writeToFile(JSON.stringify(apps, null, 4))
         readFile()
       }
 
       function updateViewMode() {
-        fs.writeFileSync('./src/memory/apps.json', JSON.stringify(apps, null, 4))
+        writeToFile(JSON.stringify(apps, null, 4))
       }
 
       function saveData() {
@@ -211,7 +225,7 @@
             return;
           }
 
-          fs.writeFileSync('./src/memory/apps.json', data)
+          writeToFile(data)
 
           readFile()
         })
