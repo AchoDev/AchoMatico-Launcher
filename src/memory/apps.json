@@ -1,84 +1,53 @@
 {
+    "selectedViewMode": 1,
     "apps": [
         {
-            "name": "Audacity",
+            "name": "Vortex",
             "description": "",
-            "lastplayed": "15/11/2023",
-            "iconimage": "blob:file:///7b2ce9e7-b130-456e-8153-cfaf605081a5",
+            "lastplayed": "16/11/2023",
+            "iconimage": "data:image/png;base64,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",
             "headimage": "../images/head.png",
-            "path": "C:/Program Files/Audacity/Audacity.exe"
+            "path": "C:/Program Files/Black Tree Gaming Ltd/Vortex/Vortex.exe"
         },
         {
-            "name": "Badlion Client",
+            "name": "Zoom",
             "description": "",
-            "lastplayed": "15/11/2023",
-            "iconimage": "blob:file:///2133196e-2e2a-4e3e-97e5-b4a5d7ad1a80",
+            "lastplayed": "16/11/2023",
+            "iconimage": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAFkUlEQVRYhaWXT4hdVx3HP7/fOff1tY3MK05SKs3MC+1CXGi60k3lqQs3WUw3BXUw001DtNCCKG1KmGQR7DLdNIYsOsGxKULbQENaWiRTUkFXiSCShZo3YxEVpS/aTGbeu/f3c3HufX9m3usMyYHLvefce8/3c37/zr3CLlrzuTstLMwV6JRgB4HG/XVvxuCE4NQyJ6i3g3gny6x9X82v1/LuR5de2ruy09wy6UZj4WYjz5vP1++zF0RoBIWgTlBH1QkhPReDk0UjixCCkwWnFo0sGkGsHWos/fWfnL/xykPtXQM0vudzXrPXVaSh6gCoQtB0fytIFNBoBPWxIFlmbaF38vJP9i3tCLBn3hdFOSF4X7CCGAYJ5dgISEjXWUxuAahnBTHgMZho4MQHP506ORFgz7wvqvqJqu8IuwGZ5BZVqGXJGkGNes3YCtEHePD7+YKE8LoICAOh4bYV5G7dIp4/tXL8oYt9gC+/+Glz7W9TV1SlWYn9+Lvwyg/Gcuyq/f7PzksXCv7esQQ1BFLTvPOn1f8c6Cwd6CjAJ580DiMDcYA/rNrdqwNff1xYOhqpR6HbU3q50u1JOiw2Hn903/MACmDuC+mcDoCPbyhnPrwnBmam4ZGpQFHAZlfY6CqbXWVjU+gVvAAQ6/O9Fl40cUAiFQjAz34Jn37mzD8pzEzfHcRmYfRyLbPGAQELFFEazefutKLm3ZZoxEXBc0BBFNxAlFNvCz9/Z/vEMpQ/M1+Ey8fYBnnmQ/jjmhIUChOCOmZOoU5wBWMuqnPQAfHkcxeSOIpZghi2ipbC7glikviF3zovv5EyxSydq6QrTDBzothU9BBn3YtyVWEUBFDRbeI7rfxXH8OPzqUUNRNUHStjOlmCasKD0Yv1BgQQ7Wf/MIhZXg7GPgjAgb2fJ+44QtF/oSIfTFCYcH+NRnSzpmxZ2TDIYHAQH5PEl68aR88pWhazqpIW/YwetcadbmhG8RxccUmjolmKAY24FyO12gX2TxdcPpaNXfnRc1W8CCIpThDpV9YEkmasQKK7IZKC0CVCGQ8YyS1lNogE9u91Pnh5vPizZ0djxH1wrizsCLlVpb4EwXLcctwN8RzKa7wA6yVruDE7bWPFl68az/6ijJcxW4hIEjaXkT2mcou65W3cGIDk20Bmp533jtfHih85a8lcJWhVTW3IAn1rMAqx2aMdhbyDeUrU/oPJB4Iyszfw3vEvjBc/s4lISEWMVDuqAjauuZcQpUvEux11/LpTpGphPfAeWA5uzOwLvL/YYHZfGJlo+aMeR167U05aIG5l2lbWyMdaYwTEQUK2GsW55RQ4BUggJUMqXe8vPjxB/DZI6K92W7ZXFnEmVtLywWtSP3StBfEKomlSQKTGoW88wK9ffHisKXfT1v4Ny1edU28V9PeXEqCCMfJv6calJ1bMNjtYXrqgwL3L7PR4P+62zUzDsaeEs0cqawzcogK4tzeWsxUF0Pz2q1g3AZQg7/7u1j0BVG3+SeWbX6kWY0MQsgTlB0n9SzOnTaSTcj+BrP5jnadPrbH6r+KeIb6630cD1b2df9Y+D0MfpQ9858qcxfo7KRbKeJDAtj4ghGp/BQJoRPqpp7ho6lfvQ/+c9pfwzO034lL5dmq9m+dvxMd+KLi30ogn2n6MV/2ELV4We6ke8VIAJK2y3I4GZRcc3E+uX6ifrnRHciz/y9JKfOywAC28EpNyf/Dt/T6IgfgYEAbybiDx5PqbD54Y1hz7a1b/9m8WPKsvintzmxsANBvtSxhySzVWpZ66oLcC8sz/3pq+uFVr4s9pfe5mk/W1BZd4eCzIjvERAO9IkFdre/LTnaUDnXE6EwFGYA5da9H9b8uIXwshNs3yhmit2RfWCEhbNOs4fl2cW263L25cemLH3/P/Awcy6GACrpj1AAAAAElFTkSuQmCC",
             "headimage": "../images/head.png",
-            "path": "C:/Program Files/Badlion Client/Badlion Client.exe"
-        },
-        {
-            "name": "Audacity",
-            "description": "",
-            "lastplayed": "15/11/2023",
-            "iconimage": "blob:file:///a52aa315-a4ef-4fbe-8f99-5033ebfedd51",
-            "headimage": "../images/head.png",
-            "path": "C:/Program Files/Audacity/Audacity.exe"
-        },
-        {
-            "name": "",
-            "description": "",
-            "lastplayed": "15/11/2023",
-            "iconimage": "blob:file:///f569aef9-d910-4563-924f-9f46d744c992",
-            "headimage": "../images/head.png",
-            "path": "C:/Program Files/Badlion Client/Badlion Client.exe"
-        },
-        {
-            "name": "fdsafds",
-            "description": "",
-            "lastplayed": "15/11/2023",
-            "iconimage": "blob:file:///6802fd98-1a38-4471-8a4f-819ebfd0eafb",
-            "headimage": "../images/head.png",
-            "path": "C:/Program Files/Audacity/Audacity.exe"
-        },
-        {
-            "name": "tets",
-            "description": "",
-            "lastplayed": "15/11/2023",
-            "iconimage": "blob:file:///054812d4-c88a-4320-aad4-8e1491ad59ec",
-            "headimage": "../images/head.png",
-            "path": "C:/Program Files/Badlion Client/Badlion Client.exe"
+            "path": "C:/Users/Ahmed/AppData/Roaming/Zoom/bin/Zoom.exe"
         },
         {
             "name": "Audacity",
             "description": "",
-            "lastplayed": "15/11/2023",
-            "iconimage": "blob:file:///50146755-ecb7-495f-9513-b60e36056c68",
+            "lastplayed": "16/11/2023",
+            "iconimage": "data:image/png;base64,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",
             "headimage": "../images/head.png",
             "path": "C:/Program Files/Audacity/Audacity.exe"
         },
         {
-            "name": "Badlion Client",
+            "name": "Battle",
             "description": "",
-            "lastplayed": "15/11/2023",
-            "iconimage": "blob:file:///e4777a0a-f636-422b-9562-57b73d12ee0d",
+            "lastplayed": "16/11/2023",
+            "iconimage": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAEsElEQVRYhc2XP2wadxTHP/fjjMGF+iCxIuMhpyJVimrJZ4mxVvBgjzWZ3A28ZQseMnWwPbeSyZRssbfSxThjOoR0rSWIGitSJNrrQmRF5K6ta64E7jpc+H8QnGbom+B3v7vv9733fe/3fhKTWrakMBVO0fLdRKBhoyIkBQDbMRHo2JSRKNIyj8ktm5N8Vno/8AsVyZ9FEukO4CRmOwfY1h65G/qHEciWFOToDjjZiUG9IXJ8d337cgSyL1RE4AlCUv8b+DuzHR3bWvWKhhjafPel9lHBAYTkOnT3pTb4qD8CYzxXAoLcRoSNxRnMus3Bz+fs/fjH5Yh4RKJLIFtSEEpplOcHm1dIJ0J9a+Vqg9UHZ5h1+5IkzOV2lXRTIEd3RoGrEXkIHECL+Xly+xpKcDiT7feGTEiqK+53fwE39GPUri1MdX4fnpyz+uCMrXwN3WiixfzsrM16vpeMT4/4opN1MdsEfNO7o8BdT1wCZt0mk69RrFgcnJyzev8M3WiSXfmU5GeBYeIxv3cUAKb8WQCZbElBEulxBJSAKxXdaJJJfNJZN+s2W9/XQALTGtbBUsyPbjS9P2qLNNnSrsxUOIXjBSq4sxImGQ+QjLveqVFXC2pURgkKlEA39+Vqg3K1wfHzCwqnddSIPFIbAEiSwlQ4JWOL5GA7SidCpBaDFCv/sJWvkYxP83DzKoVfLtj6odZHUlvwk/oiyMbiDJlEiEwihG400d80KVcbowkAtHw3ZSRpqXdNi/l5WrE4PDnv8c7bE9OyKVYsihWL7CMDLeYnuxJ2oxSRMes2+lpzdL8QaAKbvtIrVxtDeStXG5h1G23BP9ahcrVBJl9j+5EBgBIU7K4rHKXnvNPhoIpJT7hytTFa0T2mRmTurITJ5GsUnl8AkFqcYf+ryPBmSVLGqKRrWszP8WkdJSg8y63XdtfdnnB4ct6nl0wihDY/HEGB7YwdHNSIzFFmjsKp683o5gI76wrpRIitvAvcWyUA16MDEXQcUyAYOzAk49OoEZmleT/FisXNuHcE0okQu2uz7D02KVYslIDgKDPXt+fZYFVI6ALHeTaOwM66K5Hf37hqTsYDQ2lIJ0IcbF6hXG1QOK3z5PY1fvtmAS3mhty07E7r7jObsoywizjenbC3lepmE/OVW3Y767MUH1gdgrtrs+hGk+1HBkeZue47RpPDk7/J/fSnZ6fEoSjz9q8CQtn3qgY16uuSmfdT/NViK1+jtD1P9sswG4szJOMBdKPJ6v0zlKBwPX3TxKzb3qB9BMxjmdyyyXblEHx3Bp/3iujh11fYe2x2Qrq/EQXc8rx18NoNrzEer89s54DcsunGymnkIDhEQDda3WhEZB5uXh143mR5/9UlUHsJWHvQPo5zN3RarXuDe9pt1mv91uFrzLo9chYYa1LrXnssm2gkyyRCqBEfhuVw/PyiT825jQjGhT35fDgwkk08lI6zzLtxrVixRp//HfBRQ2nb7r7UaE0dfdSxvA3ue3uLbz8v9y7/Dy8m4IrSNpe9hHlpk1r33Jx73xEnu5z6pnffNzf2me2YOPYhTiP34ZfTISIlBcIpfCKJJC2NvJ77Wk95+1dh0uv5v9DiCYlgKlwuAAAAAElFTkSuQmCC",
             "headimage": "../images/head.png",
-            "path": "C:/Program Files/Badlion Client/Badlion Client.exe"
+            "path": "D:/battelnet/Battle.net/Battle.net Launcher.exe"
         },
         {
-            "name": "Audacity",
+            "name": "ultra_tictactoe",
             "description": "",
-            "lastplayed": "15/11/2023",
-            "iconimage": "blob:file:///cb999c17-7013-4bab-b70b-990be90723b9",
+            "lastplayed": "16/11/2023",
+            "iconimage": "data:image/png;base64,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",
             "headimage": "../images/head.png",
-            "path": "C:/Program Files/Audacity/Audacity.exe"
+            "path": "C:/Users/Ahmed/Desktop/coding/Ultra-TicTacToe/build/windows/runner/Release/ultra_tictactoe.exe"
         },
         {
-            "name": "Badlion Client",
+            "name": "AvastUI",
             "description": "",
-            "lastplayed": "15/11/2023",
-            "iconimage": "blob:file:///d85414ea-3ebc-4113-813b-0b7c123d392f",
+            "lastplayed": "16/11/2023",
+            "iconimage": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAEtUlEQVRYha2XfUxVZRzHP8+59/IqcKewUJnQhmATFSFoKpEvTSDYCmdNdL2AmSvDBpOAXrZWGr5MmLlVf2jmrA3NZlkDB8u01JktTUWnQIqUE/RqqMQF7+We/ngu93a75xwujN92tnOe38v3e57n+f2e3yMIUNRKooB8VBYiSAUSAKtb3QN0oPI7gsP08b3Yzr1A4ophgSuYiqAaWIZCaEBsXdiBepxsFLW0joqAWkYoFtYDpShYAgL2J+IAtuPgHVGHPWAC7r8+gMJ0zcCmYHi0BBIXyRBXDsOvO8HZr0fkAg6eEXW0D0tALWc2ZppQiNYMFhIFK5shLsN3/Ppp2LEI+nv0SNhwsljUcua/w4oPeBmJhuAAOR/6gwNMToO8TbpuKERjpkmtYKomAfeaf2MIDjCrSF+X9iJExRmTEBxQy7yb2TsDFtbrrrnH2gIhVn29ORiyyg1DoDAdCx/4EFDLSQJKjT0BlwNuXTa2yVgFYcaTCKwdWgo5A2aqAk61ozXG+uBxMPd1YxsFi7u2INRKolC5EXCRAbnZst/U1/fdgU3x8KBX38aFHcFEBZWCEYEDNFbCyY/19WHj4bHVxjEkZr4CLBgWUCgQNsF37GApnN6t75NVDqYg47gqCxX3waIvU3Og+i941wZvnIfYWW5nF+xfCS37tf0iJ0H6S8YEBKkK8lTTlqBxsHwvREyU37Ep8OpxmPGsm8Qg1K+Ay43a/tkVIExGFBIUvEeqv8Qky9LrQyocivbC4g0gBAw+gC+WwNWj/v4TEmHGUiMCVsVIi60NBu77jwsBC96CF76TBJ398HkB/HnK3/aJKoxOfQXZTGjLwD3Y9zz03dbWT8uH105CdLJMuV25cOOsr82kVEjO1UPoUYAOXQIAF7+FmjioXw5tzeBy+epjpsGaXyA5H+x/w2c5cOuSr838ar3oHab35pGJIM1n2BoPGS9DRKwsKgN3obsFzuyB33bJMesUme8A5hCYuUyW6tZDcPEgTC+EUKs3XvsPcLfTF16lUaiVLEfwpWfQFAQVVyBqsttIBVsrdByTz7VjcLsdEPDw45BeDClLZQkGOLcP9hfLzFn9M0S6M+hSA+zO/z+BFUItJZJQujzVMDwG3u6WG01P7nd5CbU3Q0+nTM30YkjIgq5zsKcQLCHwyk8QHi1/ZPts7x5xYcdOrABQK9mJoMQDkLsR5q6VG6v3pnz+uel97+32fvd0wr3rXnITEmUBSn4KGtaBvQdWHZbZcrYe6ouGCOwSmymRBGQPeEHzRBSK7AHsd/RnREuEAgnZcPUIxM+D4kNyRrZOA9sfDpykiFpaFQCxhTZM5m0AhI6HpDx48n0oaYIVX0PEQyMDB1mqrx6R79eOy2I16JTVMSj8o6F23bPQau2cUJZ9corYmSkIIae2YR2c/2rk4HryyNOw5NMWGjdniufq7D4EANT+/kRwnuDEthh+3ACOvrEDB1CxMWX+HLHmiKc992/Ld+TNpq2xCTFMczpS0WnLtS8mZSRi4QAKKWME3oKDQq2LieZhJOpox0EmLmrd16vRAjtwsRUHmVrgEMjltJwkzFQxmsupSo3YQpuR6bAEPERKiSSMgrG+nv8LcS5+mNkDPCgAAAAASUVORK5CYII=",
             "headimage": "../images/head.png",
-            "path": "C:/Program Files/Badlion Client/Badlion Client.exe"
+            "path": "C:/Program Files/Avast Software/Avast/AvastUI.exe"
         }
     ]
 }

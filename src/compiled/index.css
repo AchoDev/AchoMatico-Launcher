@@ -3,253 +3,348 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: 100dvh; }
-  #parent-container #top-bar-container {
-    background: #4d5166;
-    height: 40px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    border-radius: 5px;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; }
-    #parent-container #top-bar-container img {
-      height: 100%;
-      width: auto;
-      margin-left: 10px; }
-    #parent-container #top-bar-container #bar-btn-container {
-      display: flex;
-      flex-direction: row;
-      justify-content: right;
-      align-items: center;
-      margin-top: 50px;
-      margin-bottom: 50px;
-      height: 100% !important; }
-      #parent-container #top-bar-container #bar-btn-container #settings {
-        margin-right: 20px;
-        background: #9096a5;
-        border: none;
-        height: 25.6px;
-        width: 70px;
-        border-radius: 5px;
-        color: white;
-        font-family: inherit;
-        cursor: pointer;
-        transition: cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.2s; }
-        #parent-container #top-bar-container #bar-btn-container #settings:hover {
-          transform: scale(1.05);
-          background: #acb1bc; }
-      #parent-container #top-bar-container #bar-btn-container #account {
-        width: 32px;
-        height: 32px;
-        border: none;
-        border-radius: 3px;
-        background: #9096a5;
-        box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px; }
-        #parent-container #top-bar-container #bar-btn-container #account img {
-          width: 130%;
-          height: 130%;
-          transform: translate(-15%, -15%); }
-      #parent-container #top-bar-container #bar-btn-container #name {
-        padding-left: 20px;
-        padding-right: 20px; }
-  #parent-container #app-container {
-    flex-grow: 1;
-    display: flex;
-    flex-direction: row; }
-    #parent-container #app-container #selector-container {
-      width: 200px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      flex-shrink: 0;
-      overflow-y: scroll;
-      height: 100vh; }
-      #parent-container #app-container #selector-container div {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        width: 100%; }
-      #parent-container #app-container #selector-container input {
-        padding: 10px 0 10px 0;
-        border: none;
-        border-radius: 15px;
-        width: 85%;
-        margin: 10px 0 10px 0;
-        font-family: inherit;
-        padding-left: 20px; }
-        #parent-container #app-container #selector-container input:active, #parent-container #app-container #selector-container input:focus {
-          outline: 1px;
-          outline-color: rgba(0, 0, 0, 0.595);
-          outline-style: solid; }
-      #parent-container #app-container #selector-container .app-selector-button {
-        padding: 10px 0 10px 0;
-        margin-bottom: 6px;
-        border: none;
-        border-radius: 10px;
-        width: 90%;
-        color: white;
-        cursor: pointer;
-        display: flex;
-        flex-direction: row;
-        justify-content: space-around;
-        font-family: inherit;
-        background: #717c8f;
-        transition: ease-in-out 0.1s; }
-        #parent-container #app-container #selector-container .app-selector-button img {
-          width: 40px;
-          height: 40px; }
-        #parent-container #app-container #selector-container .app-selector-button span {
-          width: 70%;
-          height: 100%;
-          display: flex;
-          align-items: center;
-          justify-content: center; }
-      #parent-container #app-container #selector-container .app-selector-button:hover {
-        background: #8e96a5;
-        transform: scale(1.03);
-        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; }
-      #parent-container #app-container #selector-container .app-selector-button:active {
-        transition: none;
-        background: #5a6373;
-        transform: scale(0.97); }
-    #parent-container #app-container #show-container {
-      flex-grow: 1;
-      background: linear-gradient(160deg, #343746, #18191f);
-      overflow-y: scroll;
-      height: 100vh; }
-      #parent-container #app-container #show-container #top-head-image {
-        width: 100%;
-        height: 200px;
-        position: relative; }
-        #parent-container #app-container #show-container #top-head-image img {
-          widtH: 100%;
-          height: 100%; }
-        #parent-container #app-container #show-container #top-head-image #edit-button {
-          position: absolute;
-          top: 5px;
-          right: 5px;
-          width: 20px;
-          height: 20px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          background: rgba(24, 100, 141, 0); }
-          #parent-container #app-container #show-container #top-head-image #edit-button img {
-            width: 20px;
-            height: 20px;
-            filter: invert(1);
-            background: white;
-            border-radius: 5px;
-            border: 2px solid white; }
-        #parent-container #app-container #show-container #top-head-image #edit-button:hover {
-          transform: scale(1.05); }
-        #parent-container #app-container #show-container #top-head-image #edit-button:active {
-          transform: scale(0.95); }
-        #parent-container #app-container #show-container #top-head-image .save-button {
-          width: 40px !important;
-          background: black !important;
-          filter: invert(0) !important;
-          color: white;
-          border-radius: 5px; }
-      #parent-container #app-container #show-container #app-content-container {
-        display: flex;
-        flex-direction: column;
-        margin-bottom: 100px; }
-        #parent-container #app-container #show-container #app-content-container #top-bar {
-          display: flex;
-          flex-direction: column;
-          justify-content: space-between;
-          align-items: center;
-          margin-top: 30px;
-          margin-bottom: 50px;
-          height: 150px; }
-          #parent-container #app-container #show-container #app-content-container #top-bar #icon-title-container {
-            display: flex;
-            flex-direction: row;
-            justify-content: space-around;
-            align-items: center;
-            gap: 10px;
-            height: 50px; }
-            #parent-container #app-container #show-container #app-content-container #top-bar #icon-title-container #icon-image {
-              height: 100%;
-              border-radius: 10px;
-              border: 2px solid #19191f;
-              box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px; }
-            #parent-container #app-container #show-container #app-content-container #top-bar #icon-title-container #title {
-              font-size: 2.5rem; }
-          #parent-container #app-container #show-container #app-content-container #top-bar #lower-bar-flex-wrapper {
-            width: 100%;
-            display: flex;
-            flex-direction: row;
-            justify-content: center; }
-            #parent-container #app-container #show-container #app-content-container #top-bar #lower-bar-flex-wrapper #lower-bar-container {
-              height: 50px;
-              display: flex;
-              flex-direction: row;
-              gap: 40px; }
-              #parent-container #app-container #show-container #app-content-container #top-bar #lower-bar-flex-wrapper #lower-bar-container button {
-                background: linear-gradient(150deg, #0b3769, #104f97);
-                height: 100%;
-                width: 200px;
-                border-radius: 10px;
-                color: white;
-                font-family: inherit;
-                font-size: 2rem;
-                transition: ease-in-out 0.1s;
-                border: 1px solid #3e5672; }
-              #parent-container #app-container #show-container #app-content-container #top-bar #lower-bar-flex-wrapper #lower-bar-container button:hover {
-                background: #1567c5;
-                cursor: pointer;
-                transform: scale(1.1);
-                box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; }
-              #parent-container #app-container #show-container #app-content-container #top-bar #lower-bar-flex-wrapper #lower-bar-container button:active {
-                transition: none;
-                transform: scale(1.05);
-                box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px, rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset; }
-              #parent-container #app-container #show-container #app-content-container #top-bar #lower-bar-flex-wrapper #lower-bar-container #space-taken-container, #parent-container #app-container #show-container #app-content-container #top-bar #lower-bar-flex-wrapper #lower-bar-container #last-played-container {
-                display: flex;
-                flex-direction: column;
-                justify-content: right;
-                gap: 0px;
-                align-items: center; }
-                #parent-container #app-container #show-container #app-content-container #top-bar #lower-bar-flex-wrapper #lower-bar-container #space-taken-container span, #parent-container #app-container #show-container #app-content-container #top-bar #lower-bar-flex-wrapper #lower-bar-container #last-played-container span {
-                  text-align: center; }
-        #parent-container #app-container #show-container #app-content-container #desc-container {
-          flex-grow: 1;
-          display: flex;
-          justify-content: center; }
-          #parent-container #app-container #show-container #app-content-container #desc-container #desc-p {
-            padding: 20px;
-            height: 100%;
-            width: 80%;
-            border: 3px solid #5a5d6d;
-            border-radius: 10px; }
+  height: 100dvh;
+}
+#parent-container #top-bar-container {
+  background: #4d5166;
+  height: 40px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+#parent-container #top-bar-container img {
+  height: 100%;
+  width: auto;
+  margin-left: 10px;
+}
+#parent-container #top-bar-container #bar-btn-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: right;
+  align-items: center;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  height: 100% !important;
+}
+#parent-container #top-bar-container #bar-btn-container #settings {
+  margin-right: 20px;
+  background: rgb(144, 150, 165);
+  border: none;
+  height: 25.6px;
+  width: 70px;
+  border-radius: 5px;
+  color: white;
+  font-family: inherit;
+  cursor: pointer;
+  transition: cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.2s;
+}
+#parent-container #top-bar-container #bar-btn-container #settings:hover {
+  transform: scale(1.05);
+  background: #acb1bc;
+}
+#parent-container #top-bar-container #bar-btn-container #account {
+  width: 32px;
+  height: 32px;
+  border: none;
+  border-radius: 3px;
+  background: rgb(144, 150, 165);
+  box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
+}
+#parent-container #top-bar-container #bar-btn-container #account img {
+  width: 130%;
+  height: 130%;
+  transform: translate(-15%, -15%);
+}
+#parent-container #top-bar-container #bar-btn-container #name {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+#parent-container #app-container {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: row;
+}
+#parent-container #app-container #selector-container {
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-shrink: 0;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  height: calc(100vh - 40px);
+}
+#parent-container #app-container #selector-container div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+#parent-container #app-container #selector-container input {
+  padding: 10px 0 10px 0;
+  border: none;
+  border-radius: 15px;
+  width: 85%;
+  margin: 10px 0 10px 0;
+  font-family: inherit;
+  padding-left: 20px;
+}
+#parent-container #app-container #selector-container input:active, #parent-container #app-container #selector-container input:focus {
+  outline: 1px;
+  outline-color: rgba(0, 0, 0, 0.595);
+  outline-style: solid;
+}
+#parent-container #app-container #selector-container .app-selector-button {
+  padding: 10px 0 10px 0;
+  margin-bottom: 6px;
+  border: none;
+  border-radius: 10px;
+  width: 90%;
+  color: white;
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  font-family: inherit;
+  background: rgb(113, 124, 143);
+  transition: ease-in-out 0.1s;
+}
+#parent-container #app-container #selector-container .app-selector-button img {
+  width: 40px;
+  height: 40px;
+  border-radius: 5px;
+}
+#parent-container #app-container #selector-container .app-selector-button span {
+  width: 70%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#parent-container #app-container #selector-container .app-selector-button:hover {
+  background: #8e96a5;
+  transform: scale(1.03);
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+#parent-container #app-container #selector-container .app-selector-button:active {
+  transition: none;
+  background: #5a6373;
+  transform: scale(0.97);
+}
+#parent-container #app-container #show-container {
+  flex-grow: 1;
+  background: linear-gradient(160deg, #343746, #18191f);
+  overflow-y: scroll;
+  height: 100vh;
+}
+#parent-container #app-container #show-container #top-head-image {
+  width: 100%;
+  height: 0;
+  position: relative;
+}
+#parent-container #app-container #show-container #top-head-image img {
+  widtH: 100%;
+  height: 100%;
+}
+#parent-container #app-container #show-container #top-head-image #edit-button {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  cursor: pointer;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#parent-container #app-container #show-container #top-head-image #edit-button img {
+  width: 20px;
+  height: 20px;
+  filter: invert(1);
+  background: rgb(255, 255, 255);
+  border-radius: 5px;
+  border: 2px solid rgb(255, 255, 255);
+}
+#parent-container #app-container #show-container #top-head-image #edit-button:hover {
+  transform: scale(1.05);
+}
+#parent-container #app-container #show-container #top-head-image #edit-button:active {
+  transform: scale(0.95);
+}
+#parent-container #app-container #show-container #top-head-image #save-button {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  width: 80px;
+  height: 30px;
+  border: none;
+  border-radius: 5px;
+  background: rgb(119, 178, 255);
+  cursor: pointer;
+  transition: ease-out 0.1s;
+}
+#parent-container #app-container #show-container #top-head-image #save-button:hover {
+  transform: scale(1.05);
+}
+#parent-container #app-container #show-container #top-head-image .save-button {
+  width: 80px !important;
+  background: black !important;
+  filter: invert(0) !important;
+  color: white;
+  border-radius: 5px;
+}
+#parent-container #app-container #show-container #app-content-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: calc(100% - 40px);
+}
+#parent-container #app-container #show-container #app-content-container #delete-button {
+  width: 100px;
+  height: 50px;
+  margin-top: 30px;
+  background: red;
+  border: none;
+  border-radius: 10px;
+  color: white;
+  font-size: 15pt;
+  cursor: pointer;
+  transition: ease-out 0.1s;
+}
+#parent-container #app-container #show-container #app-content-container #delete-button:hover {
+  transform: scale(1.1);
+}
+#parent-container #app-container #show-container #app-content-container #top-bar {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 30px;
+  margin-bottom: 50px;
+  height: 150px;
+}
+#parent-container #app-container #show-container #app-content-container #top-bar #icon-title-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  gap: 10px;
+  height: 50px;
+}
+#parent-container #app-container #show-container #app-content-container #top-bar #icon-title-container #icon-image {
+  height: 100%;
+  border-radius: 10px;
+  border: 2px solid rgb(25, 25, 31);
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+}
+#parent-container #app-container #show-container #app-content-container #top-bar #icon-title-container #title-edit {
+  font-size: 2.5rem;
+}
+#parent-container #app-container #show-container #app-content-container #top-bar #icon-title-container #title {
+  font-size: 2.5rem;
+}
+#parent-container #app-container #show-container #app-content-container #top-bar #lower-bar-flex-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+#parent-container #app-container #show-container #app-content-container #top-bar #lower-bar-flex-wrapper #lower-bar-container {
+  height: 50px;
+  display: flex;
+  flex-direction: row;
+  gap: 40px;
+}
+#parent-container #app-container #show-container #app-content-container #top-bar #lower-bar-flex-wrapper #lower-bar-container button {
+  background: linear-gradient(150deg, rgb(11, 55, 105), #104f97);
+  height: 100%;
+  width: 200px;
+  border-radius: 10px;
+  color: white;
+  font-family: inherit;
+  font-size: 2rem;
+  transition: ease-in-out 0.1s;
+  border: 1px solid rgb(62, 86, 114);
+}
+#parent-container #app-container #show-container #app-content-container #top-bar #lower-bar-flex-wrapper #lower-bar-container button:hover {
+  background: #1567c5;
+  cursor: pointer;
+  transform: scale(1.1);
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+#parent-container #app-container #show-container #app-content-container #top-bar #lower-bar-flex-wrapper #lower-bar-container button:active {
+  transition: none;
+  transform: scale(1.05);
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px, rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+}
+#parent-container #app-container #show-container #app-content-container #top-bar #lower-bar-flex-wrapper #lower-bar-container #space-taken-container, #parent-container #app-container #show-container #app-content-container #top-bar #lower-bar-flex-wrapper #lower-bar-container #last-played-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: right;
+  gap: 0px;
+  align-items: center;
+}
+#parent-container #app-container #show-container #app-content-container #top-bar #lower-bar-flex-wrapper #lower-bar-container #space-taken-container span, #parent-container #app-container #show-container #app-content-container #top-bar #lower-bar-flex-wrapper #lower-bar-container #last-played-container span {
+  text-align: center;
+}
+#parent-container #app-container #show-container #app-content-container #desc-container {
+  flex-grow: 0;
+  display: flex;
+  justify-content: center;
+}
+#parent-container #app-container #show-container #app-content-container #desc-container #desc-p {
+  padding: 20px;
+  height: auto;
+  width: 60%;
+  border: 3px solid rgb(90, 93, 109);
+  border-radius: 10px;
+  text-align: justify;
+  overflow: hidden;
+}
+#parent-container #app-container #show-container #app-content-container #desc-container #desc-edit {
+  height: 100%;
+  width: 100%;
+  border-radius: 10px;
+}
 
 ::-webkit-scrollbar {
-  width: 7px; }
+  width: 7px;
+}
 
 /* Track */
 ::-webkit-scrollbar-track {
   box-shadow: rgba(0, 0, 0, 0.404);
-  border-radius: 10px; }
+  border-radius: 10px;
+}
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #5c5c5c;
-  border-radius: 10px; }
+  background: rgb(92, 92, 92);
+  border-radius: 10px;
+}
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #818181; }
+  background: rgb(129, 129, 129);
+}
 
 body {
-  font-family: 'Cabin', sans-serif !important;
+  font-family: "Cabin", sans-serif !important;
   margin: 0;
   background: linear-gradient(100deg, #424659, #272831);
-  overflow-y: hidden; }
+  overflow-y: hidden;
+}
+
+body * {
+  font-family: "Cabin", sans-serif !important;
+}
 
 .hidden {
-  display: none !important; }
+  display: none !important;
+}
 
 /*# sourceMappingURL=index.css.map */

@@ -7,8 +7,8 @@
 
     <!-- SCRIPTS -->
 
-    <script src="./page-loader.js" defer></script>
-    <script src="./edit-mode.js" defer></script>
+    <!-- <script src="./page-loader.js" defer></script> -->
+    <!-- <script src="./edit-mode.js" defer></script> -->
 
     <script src="./compiled/src/fileReader.js"></script>
 
@@ -28,27 +28,46 @@
     <script type="module">
 
       import { createApp, reactive } from "https://unpkg.com/petite-vue?module"
-      const dialog = require('node-file-dialog')
-      const fileIcon = require('extract-file-icon')
+      const filedialog = require('node-file-dialog')
+      // const fileIcon = require('file-icon-extractor')
       const execFile = require('child_process').exec;
 
+      const { app, BrowserWindow, dialog } = require('@electron/remote')
+
+      const FastAverageColor = require('fast-average-color').FastAverageColor
+      const fac = new FastAverageColor()
+
       let apps = reactive({
+        selectedViewMode: 1,
         apps: []
       })
 
       async function readFile() {
-
-        
         const data = readMemory()
+
+        apps.selectedViewMode = JSON.parse(data).selectedViewMode
+
         apps.apps = JSON.parse(data).apps
         console.log(apps)        
         
-        apps.apps.forEach(app => {          
+        apps.apps.forEach(application => {          
           try {
-            const buffer = fileIcon(app.path)
-            const blob = new Blob([buffer.buffer], {type: 'image/png'})
-            app.iconimage = URL.createObjectURL(blob)
-            console.log(buffer)
+
+            console.log(app)
+
+            app.getFileIcon(application.path, {size: "normal"}).then((fileicon) => {
+              application.iconimage = fileicon.toDataURL()
+              
+              // fac.getColor(fileicon)
+            })
+
+
+            // fileIcon.extract(app.path, "./icons", "png")
+            
+            // const buffer = fileIcon('C:\\Windows\\System32\\cmd.exe', 64)
+            // const blob = new Blob([buffer], {type: 'image/png'})
+            // app.iconimage = URL.createObjectURL(blob)
+            // console.log(buffer)
             
           } catch(e) {
             console.log(e)
@@ -58,7 +77,6 @@
       }
 
       readFile()
-
 
       let currentApp = reactive({
         name: "",
@@ -71,7 +89,11 @@
 
       let currentAppIndex = -1;
 
-      function setCurrentApp(data, index) {
+      function setCurrentApp(data, index, editMode) {
+
+        if(editMode) return;
+
+        console.log(editMode)
 
         currentAppIndex = index
 
@@ -86,21 +108,27 @@
 
       let counter = 0;
 
-      
-
       function runExe(path) {
+        try {
           var child = execFile(`start "" "${path}"`, function (error, stdout, stderr) {
               if (error) {
                   throw error;
-                  console.log("hehehehehaw")
               }
               console.log(stdout);
           });
+        } catch(e) {
+          var child = execFile(`open {${path}}`, function (error, stdout, stderr) {
+              if (error) {
+                  throw error;
+              }
+              console.log(stdout);
+          }); 
+        }
       }
 
       async function addApp() {
         const config = {type:'open-file'}
-        const path = dialog(config)
+        const path = filedialog(config)
           .then((dir) => {
             apps.apps.push({
               name: dir[0].split('/').at(-1).split('.')[0],
@@ -117,7 +145,10 @@
           })
         }
         
-        function startApp(path) {
+      function startApp(path) {
+
+        console.log("starting")
+        console.log(path)
 
         currentApp.lastplayed = new Date().toLocaleDateString('en-GB')
         apps.apps[currentAppIndex].lastplayed = currentApp.lastplayed
@@ -126,19 +157,84 @@
         runExe(currentApp.path)
       }
 
-      function editChanges(name, desc) {
+      function editChanges() {
 
-        
+        if(currentApp.name === "") currentApp.name = "No Name!"
 
-        apps.apps[currentAppIndex].name = name
-        apps.apps[currentAppIndex].description = desc
+        apps.apps[currentAppIndex].name = currentApp.name
+        apps.apps[currentAppIndex].description = currentApp.description
         fs.writeFileSync('./src/memory/apps.json', JSON.stringify(apps, null, 4))
       }
 
       let settingsMenuOpen = false;
 
-      let newNameInput = ""
-      let newDescInput = ""
+
+      function deleteCurrentItem() {
+        apps.apps.splice(currentAppIndex, 1)
+        fs.writeFileSync('./src/memory/apps.json', JSON.stringify(apps, null, 4))
+        readFile()
+      }
+
+      function updateViewMode() {
+        fs.writeFileSync('./src/memory/apps.json', JSON.stringify(apps, null, 4))
+      }
+
+      function saveData() {
+        const config = {type: 'save-file'}
+        filedialog(config).then(dir => {
+          console.log(dir)
+
+          fs.appendFile(dir[0] + '.json', JSON.stringify(apps, null, 4), (err) => {
+            if(err) throw err;
+            console.log("saved !!")
+          })
+        })
+      }
+
+      function loadData() {
+        const config = {type: 'open-file'}
+        filedialog(config).then(dir => {
+
+          const data = fs.readFileSync(dir[0], 'utf-8', (err, data) => {
+              if(err) {
+                  // dialog.showErrorBox("an error occured\n\n" + err)
+                  return null;
+              }
+              return data
+          })
+
+          try {
+            JSON.parse(data)
+            console.log("parsed")
+          } catch(e) {
+            dialog.showErrorBox('Error', 'JSON is invalid!')
+            return;
+          }
+
+          fs.writeFileSync('./src/memory/apps.json', data)
+
+          readFile()
+        })
+      }
+
+      function clearData() {
+
+        const dialogOptions = {
+          type: 'question',
+          buttons: ['Yesss', 'No :('],
+          defaultId: 0,
+          title: 'Are you sure?',
+          message: 'Are you sure?',
+          detail: 'Do want to delete ALL your saved data? This action cannot be undone'
+        }
+
+        const response = dialog.showMessageBoxSync(null, dialogOptions)
+
+        if(response === 0) {
+          apps.apps = []
+          fs.writeFileSync('./src/memory/apps.json', JSON.stringify(apps, null, 4))
+        }
+      }
 
       createApp({
         addApp,
@@ -152,17 +248,17 @@
         settingsMenuClicked: false,
         settingsMenuOpen,
 
-        selectedViewMode: 1,
-
         currentAppIndex,
+
+        saveData,
+        loadData,
+        clearData,
 
         searchingFor: "",
 
-        newNameInput,
-        newDescInput,
-        // newBannerInput: "",
+        updateViewMode,
         editChanges,
-
+        deleteCurrentItem,
         editMode: false,
       }).mount()
     </script>
@@ -193,16 +289,16 @@
           <h3>Layout</h3>
 
           <div class="button-row">
-            <button id="normal-view" @click="selectedViewMode = 1" :class="selectedViewMode === 1 ? 'selected-button' : ''">
-              normal
+            <button id="normal-view" @click="apps.selectedViewMode = 1; updateViewMode(1)" :class="apps.selectedViewMode === 1 ? 'selected-button' : ''">
+              <img src="../images/normal_layout.png" alt="">
             </button>
     
-            <button id="compact-view" @click="selectedViewMode = 2" :class="selectedViewMode === 2 ? 'selected-button' : ''">
-              compact
+            <button id="compact-view" @click="apps.selectedViewMode = 2; updateViewMode(2)" :class="apps.selectedViewMode === 2 ? 'selected-button' : ''">
+              <img src="../images/compact_layout.png" alt="">
             </button>
     
-            <button id="full-view" @click="selectedViewMode = 3" :class="selectedViewMode === 3 ? 'selected-button' : ''">
-              full
+            <button id="full-view" @click="apps.selectedViewMode = 3; updateViewMode(3)" :class="apps.selectedViewMode === 3 ? 'selected-button' : ''">
+              <img src="../images/full_layout.png" alt="">
             </button>
           </div>
 
@@ -212,8 +308,8 @@
 
           <div class="button-row">
 
-            <button>Save</button>
-            <button>Load</button>
+            <button @click="saveData()">Save</button>
+            <button @click="loadData(); settingsMenuOpen = false">Load</button>
 
           </div>
 
@@ -223,7 +319,7 @@
 
           <div class="button-row">
 
-            <button>Delete everything</button>
+            <button @click="clearData(); settingsMenuOpen = false" id="red">Delete save data</button>
               
           </div>
 
@@ -257,6 +353,8 @@
           place-items: center;
           background: rgba(0, 0, 0, 0.503);
 
+          opacity: 0;
+
           
           transition: ease-out .1s;
         }
@@ -282,6 +380,8 @@
           justify-content: center;
           gap: 20px;
           margin: 0;
+
+          font-size: 20pt;
         }
 
         .button-row button {
@@ -299,10 +399,25 @@
           
           cursor: pointer;
         }
+
+        .button-row button img {
+          width: auto;
+          height: 60%;
+        }
         
         .button-row button:hover {
           transform: scale(1.1);
           box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        }
+
+        .button-row #red {
+          background: red;
+          color: white;
+          border: 2px solid white;
+
+          width: 100px !important;
+
+          text-align: center;
         }
         
         .selected-button {
@@ -332,12 +447,17 @@
 
       <div id="app-container">
 
-        <div id="full-mode-container" v-if="selectedViewMode === 3">
+        <div id="full-mode-container" v-if="apps.selectedViewMode === 3">
           <div id="button-wrapper">
-            <button v-for="(app, index) in apps.apps" @click="setCurrentApp(app, index)">
+            <button v-for="(app, index) in apps.apps" @click="
+              setCurrentApp(app, index, editMode); 
+              startApp(); 
+              $event.target.className = 'loading'
+              setTimeout(() => $event.target.className = '', 10000)
+              ">
+
               <img :src="app.iconimage" alt="img" />
 
-  
               <br><br>
   
               <span> {{ app.name }} </span>
@@ -349,7 +469,33 @@
           </div>
 
           <style>
-            button {
+
+            #button-wrapper button:not(#addButton)::after {
+              content: 'Starting...';
+              font-family: 'Cabin', sans-serif !important;
+              font-size: 20pt;
+              font-weight: 500;
+              color: white;
+
+              position: absolute;
+
+              opacity: 0;
+              
+              display: grid;
+              place-items: center;
+
+              width: 100%;
+              height: 100%;
+              background: linear-gradient(30deg, rgba(0, 0, 0, 0.781), rgba(0, 0, 0, 0.808), rgba(0, 0, 0, 0.705));
+            
+              transition: linear .2s;
+            }
+
+            .loading::after {
+              opacity: 1 !important;
+            }
+
+            #button-wrapper button {
               width: 230px;
               height: 300px;
 
@@ -360,42 +506,53 @@
               display: flex;
               flex-direction: column;
               align-items: center;
-              justify-content: center;
+              justify-content: space-around;
+              position: relative;
+
+              padding-bottom: 60px;
+              padding-top: 60px;
             
               transition: cubic-bezier(0.19, 1, 0.22, 1) 1s;
 
               cursor: pointer;
 
-              overflow: none;
+              overflow: hidden;
             }
 
-            button:active {
-
-              transition: cubic-bezier(0.23, 1, 0.320, 1) .5s;
-
-              transform: scale(1.05) !important;
-              filter: brightness(50%)
-            }
-
-            button:hover {
+            #button-wrapper button:hover {
               transform: scale(1.1);
               backdrop-filter: blur(10px);
+
+              filter: brightness(130%);
+
+              box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
             }
 
-            button:hover img {
+            #button-wrapper button:active {
+
+              transition: cubic-bezier(0.23, 1, 0.320, 1) .5s;
+              box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+              transform: scale(1.05) !important;
+              filter: brightness(60%)
+            }
+
+            #button-wrapper button:hover img {
               transform: scale(1.3);
+              
             }
 
-            button:hover span {
+            #button-wrapper button:hover span {
               transform: scale(1.1);
             }
 
-            button img {
-              width: 50%;
+            #button-wrapper button img {
+              /* filter: blur(1px); */
+              border-radius: 5px;
+              width: 20%;
               transition: cubic-bezier(0.19, 1, 0.22, 1) .7s;
             }
 
-            button span {
+            #button-wrapper button span {
               transition: cubic-bezier(0.25, 0.46, 0.45, 0.94) 1.2s;
 
               font-size: 20pt;
@@ -406,16 +563,21 @@
             }
 
             #addButton {
-              background: linear-gradient(105deg, rgb(202, 229, 255), rgb(71, 187, 255))
+              background: linear-gradient(105deg, rgb(202, 229, 255), rgb(71, 187, 255)) !important;
+            }
+
+            #addButton:hover {
+              filter: none !important;
             }
 
             #addButton:hover img {
-              transform: scale(1.1) rotate(225deg);
+              transform: scale(1.1) rotate(225deg) !important;
             }
 
             #addButton img {
-              transition: cubic-bezier(0.175, 0.885, 0.32, 1.275) 1.3s;
-              filter: invert(100%);
+              width: 40% !important;
+              transition: cubic-bezier(0.175, 0.885, 0.32, 1.275) 1s !important;
+              filter: invert(100%) !important;
             }
 
           </style>
@@ -447,13 +609,13 @@
           }
         </style>
 
-        <div id="selector-container" v-if="selectedViewMode !== 3">
+        <div id="selector-container" v-if="apps.selectedViewMode !== 3">
 
           <input type="text" v-model="searchingFor" placeholder="Search...">
 
-          <button v-for="(app, index) in apps.apps" @click="setCurrentApp(app, index)" class="app-selector-button" 
+          <button v-for="(app, index) in apps.apps" @click="setCurrentApp(app, index, editMode)" class="app-selector-button" 
           v-show="app.name.toLowerCase().includes(searchingFor.toLowerCase())"
-          :class="selectedViewMode === 2 ? 'compact' : ''" id="game1">
+          :class="apps.selectedViewMode === 2 ? 'compact' : ''" id="game1">
             <img :src="app.iconimage" alt="img" />
             <span> {{ app.name }} </span>
           </button>
@@ -462,8 +624,13 @@
             <img src="../images/plus.png"></img>
           </button>
 
+          <br>
+          <br>
+
           <style>
             #addButton {
+              margin-bottom: 100px;
+
               height: 40px;
               align-items: center;
               vertical-align: baseline;
@@ -511,13 +678,19 @@
               height: 13px !important;
               width: 13px !important;
             }
+
+            .compact span {
+              white-space: nowrap;
+              overflow: hidden;
+              justify-content: left !important;
+            }
           </style>
 
         </div>
 
-        <div id="show-container" v-if="selectedViewMode !== 3">
+        <div id="show-container" v-if="apps.selectedViewMode !== 3">
 
-          <center  v-show="currentApp.name === ''">
+          <center  v-show="currentApp.name === '' && !editMode">
             <span>Select an app on the left or press the Add button to add something</span>
           </center>
 
@@ -530,18 +703,22 @@
             }
           </style>
 
-          <div id="top-head-image" v-show="currentApp.name !== ''">
+          <div id="top-head-image" v-show="currentApp.name !== '' || editMode">
 
-            <img :src="currentApp.headimage" alt="head" id="head-image">
+            <!-- <img :src="currentApp.headimage" alt="head" id="head-image">
+            
+            -->
+
+
 
             <button v-show="!editMode" id="edit-button" @click="editMode = true"> <!-- EDIT MODE BUTTON -->
               <img src="../images/edit.png" alt="Edit">
             </button>
 
-            <button v-show="editMode" id="edit-button" @click="editChanges(newNameInput, newDescInput); editMode = false">Save</button>
+            <button v-show="editMode" id="save-button" @click="editChanges(); editMode = false">Save</button>
           </div>
 
-          <div id="app-content-container"  v-show="currentApp.name !== ''">
+          <div id="app-content-container"  v-show="currentApp.name !== '' || editMode">
             
             <div id="top-bar">
               
@@ -549,7 +726,7 @@
                 <img :src="currentApp.iconimage" alt="icon" id="icon-image">
                 <span id="title" v-show="!editMode"> {{ currentApp.name }} </span>
 
-                <input v-model="newNameInput" v-show="editMode" id="title-edit" type="text" placeholder="New Name....."> <!-- TITLE EDIT -->
+                <input v-model="currentApp.name" v-show="editMode" id="title-edit" type="text" placeholder="New Name....."> <!-- TITLE EDIT -->
               </div>
               
               <div id="lower-bar-flex-wrapper">
@@ -572,14 +749,16 @@
             
             </div>
           
-            <div id="desc-container">
+            <div id="desc-container" >
               <p id="desc-p" class="view-mode" v-show="!editMode">
                 {{ currentApp.description }}
               </p>
 
-              <textarea v-model="newDescInput" v-show="editMode" name="desc-e" id="desc-edit" cols="60" rows="10"></textarea> <!-- TEXT AREA EDIT -->
+              <textarea v-model="currentApp.description" v-show="editMode" name="desc-e" id="desc-edit" cols="60" rows="10"></textarea> <!-- TEXT AREA EDIT -->
+            
             </div>
-
+            
+            <button id="delete-button" @click="deleteCurrentItem(); editMode = false, currentApp.name = ''" v-show="editMode">Delete</button>
           </div> <!-- app content container -->
         </div>
       

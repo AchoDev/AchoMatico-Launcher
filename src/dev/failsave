@@ -1,0 +1,13 @@
+{
+    "game1": {
+        "last-played":"11.09.2001",
+        "path":"explorer",
+        "space-taken":"100gb"
+    },
+
+    "game2": {
+        "last-played":"11.09.2001",
+        "path":"explorer",
+        "space-taken":"99gb"
+    }
+}
